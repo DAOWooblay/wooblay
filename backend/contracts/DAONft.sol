@@ -1,15 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-//import {ERC721, ERC721Enumerable} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-//import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-
-
-import "@openzeppelin/contracts@4.7.0/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts@4.7.0/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts@4.7.0/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts@4.7.0/access/Ownable.sol";
-import "@openzeppelin/contracts@4.7.0/utils/Counters.sol"; 
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
  
 contract DAONFT is ERC721, ERC721URIStorage, Ownable, ERC721Enumerable {
@@ -49,9 +45,9 @@ contract DAONFT is ERC721, ERC721URIStorage, Ownable, ERC721Enumerable {
         return super.tokenURI(tokenId);
     }
 
-    function _beforeTokenTransfer(address from,  address to,  uint256 tokenId) internal override (ERC721, ERC721Enumerable) virtual {
+    function _beforeTokenTransfer(address from,  address to,  uint256 tokenId, uint256 batchSize) internal override (ERC721, ERC721Enumerable) virtual {
         require(from == address(0) || to == address(0), "Err: token transfer is BLOCKED");   
-        super._beforeTokenTransfer(from, to, tokenId);  
+        super._beforeTokenTransfer(from, to, tokenId, batchSize);
     }
 
     function getTokenIdCounter() public view returns (uint256) {

@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
+
 
 import "./DAONft.sol";
-import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
-
-
-pragma solidity ^0.8.4;
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract DAOContract {
     string public daoName;
