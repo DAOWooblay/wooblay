@@ -47,7 +47,7 @@ const OpenTasks: React.FC = () => {
 	return (
 		<div>
 			<h2 className="text-2xl font-bold mb-4">Open Tasks</h2>
-			<div className="space-y-4">
+			<div className="space-y-4 text-black">
 				{tasks.map((task) => (
 					<div key={task.id} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						{/* Toggle task when clicked */}
