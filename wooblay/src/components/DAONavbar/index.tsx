@@ -30,8 +30,15 @@ export default function index({ nfts }: { nfts: any }) {
                             "Sorry you have no NFTs"
                         )}
 
-
-                        <button className="w-14 h-14 rounded-full bg-white text-black text-lg">+</button>
+                        <Link href='/daocreate'>
+                            <div className="relative group">
+                                <button className="w-14 h-14 rounded-full bg-white text-black text-lg">+</button>
+                                <div className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 opacity-0 group-hover:opacity-100 transition duration-200 ease-in-out z-10">
+                                    <div className="rounded px-2 py-1 bg-black text-white text-sm">Create a DAO</div>
+                                    <div className="w-3 h-3 bg-black transform rotate-45 mt-1 mx-auto"></div>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
                 <ul className="flex ml-4 mr-4 pt-14 space-x-4">

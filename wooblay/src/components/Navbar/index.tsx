@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
 		<div>
 			<nav className="flex justify-between items-center bg-gray-800 p-4 border-b-2 border-white border-double absolute w-full top-0 left-0 z-10">
 				<div className="flex items-center">
-					<img src={"logo.png"} alt="Logo" className="w-32 h-12 ml-8" />
+					<a href="/explorer"><img src={"logo.png"} alt="Logo" className="w-32 h-12 ml-8" /></a>
 				</div>
 				<ConnectButton />
 			</nav>

@@ -17,11 +17,6 @@ const FileUploader = () => {
       const formData = new FormData();
       formData.append('file', selectedFile);
 
-      const pinataMetadata = JSON.stringify({
-        name: selectedFile.name,
-      });
-      formData.append('pinataMetadata', pinataMetadata);
-
       const pinataOptions = JSON.stringify({
         cidVersion: 0,
       });
@@ -34,6 +29,38 @@ const FileUploader = () => {
           }
         });
         console.log(res.data);
+        console.log(res.data.IpfsHash);
+        const ipfsHash = res.data.IpfsHash;
+
+        // Create JSON data
+        const jsonData = {
+          attributes: [
+            { trait_type: 'NFT', value: 'Soulbound' },
+            { trait_type: 'Asset', value: 'Non-transferable Badge' },
+            { trait_type: 'Badge', value: 'Minting First Soulbound Token' },
+            { trait_type: 'Type', value: 'Demo' },
+          ],
+          description: 'This is a demo soulbound token mint',
+          image: `https://gateway.pinata.cloud/ipfs/${ipfsHash}`,
+          name: 'Soulbound Token',
+        };
+
+        // Convert JSON data to Blob
+        const jsonBlob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
+
+        // Create a new FormData instance
+        const jsonFormData = new FormData();
+        jsonFormData.append('file', jsonBlob, 'data.json');
+        jsonFormData.append('pinataOptions', pinataOptions);
+
+        // Upload the JSON to Pinata
+        const jsonRes = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", jsonFormData, {
+          headers: {
+            'Authorization': `Bearer ${JWT}`
+          }
+        });
+        console.log(jsonRes.data);
+
       } catch (error) {
         console.log(error);
       }
@@ -41,9 +68,9 @@ const FileUploader = () => {
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
+    <div className="flex flex-col space-y-4">
+      <input type="file" onChange={handleFileChange} className="py-2" />
+      <button onClick={handleUpload} className="w-1/4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Upload</button>
     </div>
   );
 };
