@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-const OpenTasks: React.FC = () => {
+const OpenPosition: React.FC = () => {
+	const [openPositionId, setOpenPositionId] = useState<number | null>(null);
+
 	const positions = [
 		{
 			id: 1,
@@ -8,6 +10,7 @@ const OpenTasks: React.FC = () => {
 			description:
 				"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cumsociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
 			skills: "Skills required: Solidity, Ethereum. ",
+			experience: "2 Years Experience in DAOs",
 		},
 		{
 			id: 2,
@@ -15,6 +18,7 @@ const OpenTasks: React.FC = () => {
 			description:
 				"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cumsociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
 			skills: "Skills required: Solidity, Ethereum. ",
+			experience: "2 Years Experience in DAOs",
 		},
 		{
 			id: 3,
@@ -22,8 +26,17 @@ const OpenTasks: React.FC = () => {
 			description:
 				"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cumsociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
 			skills: "Skills required: Solidity, Ethereum. ",
+			experience: "2 Years Experience in DAOs",
 		},
 	];
+
+	const togglePosition = (positionId: number) => {
+		if (openPositionId === positionId) {
+			setOpenPositionId(null);
+		} else {
+			setOpenPositionId(positionId);
+		}
+	};
 
 	return (
 		<div>
@@ -31,14 +44,20 @@ const OpenTasks: React.FC = () => {
 			<div className="space-y-4 text-black">
 				{positions.map((position) => (
 					<div key={position.id} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
-						<input type="checkbox" /> {/* DaisyUI collapse toggle */}
-						<div className="collapse-title text-xl font-medium">
-							{position.title} {/* position title */}
-						</div>
+						<input
+							type="checkbox"
+							className="peer" // Peer class allows us to style based on the checked state
+							checked={openPositionId === position.id}
+							onChange={() => togglePosition(position.id)} // Toggle function
+						/>
+						<div className="collapse-title text-xl font-medium peer-checked:bg-gray-200">{position.title}</div>
 						<div className="collapse-content">
-							{/* Content revealed upon toggle */}
 							<p>{position.description}</p>
-							<p className="mt-2 text-sm text-gray-500">{position.skills}</p> {/* Detailed task information */}
+							<p className="mt-2 text-sm text-gray-500">{position.skills}</p>
+							<p className="mt-2 text-sm text-gray-500">{position.experience}</p>
+							<div className="flex justify-end mt-4">
+								<button className="btn btn-primary">Apply for position</button>
+							</div>
 						</div>
 					</div>
 				))}
@@ -47,4 +66,4 @@ const OpenTasks: React.FC = () => {
 	);
 };
 
-export default OpenTasks;
+export default OpenPosition;

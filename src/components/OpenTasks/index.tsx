@@ -7,7 +7,7 @@ const OpenTasks: React.FC = () => {
 	const tasks = [
 		{
 			id: 1,
-			title: "Design a Logo",
+			title: "Task 1",
 			description:
 				"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cumsociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
 			skills: "Skills required: Content Writing, SEO.  Compensation: 200 USDC.",
@@ -16,7 +16,7 @@ const OpenTasks: React.FC = () => {
 		},
 		{
 			id: 2,
-			title: "Write a Blog Post",
+			title: "Task 2",
 			description:
 				"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cumsociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
 			skills: "Skills required: Content Writing, SEO.  Compensation: 200 USDC.",
@@ -25,7 +25,7 @@ const OpenTasks: React.FC = () => {
 		},
 		{
 			id: 3,
-			title: "Develop a Smart Contract",
+			title: "Task 3",
 			description:
 				"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cumsociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
 			skills: "Skills required: Content Writing, SEO.  Compensation: 200 USDC.",
@@ -57,18 +57,15 @@ const OpenTasks: React.FC = () => {
 							checked={openTaskId === task.id}
 							onChange={() => toggleTask(task.id)} // Toggle function
 						/>
-						<div className="collapse-title text-xl font-medium peer-checked:bg-gray-200">
-							{" "}
-							{/* Highlight when open */}
-							{task.title}
-						</div>
+						<div className="collapse-title text-xl font-medium peer-checked:bg-gray-200">{task.title}</div>
 						<div className="collapse-content">
-							{" "}
-							{/* Only visible when checked */}
 							<p>{task.description}</p>
 							<p className="mt-2 text-sm text-gray-500">{task.skills}</p>
 							<p className="mt-2 text-sm text-gray-500">{task.timeline}</p>
 							<p className="mt-2 text-sm text-gray-500">{task.bounty}</p>
+							<div className="flex justify-end mt-4">
+								<button className="btn btn-primary">Assign yourself</button>
+							</div>
 						</div>
 					</div>
 				))}
