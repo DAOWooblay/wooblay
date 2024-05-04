@@ -1,10 +1,70 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import FormData from 'form-data';
+import { useWriteContract } from 'wagmi';
+
+const abi =
+  [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_daoName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_tickerName",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "image",
+          "type": "string"
+        }
+      ],
+      "name": "createDAO",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getDAO",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
 
 const FileUploader = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJjODMwZWM5My05Nzk2LTRkZWYtYWFmNC01Yzc0NzJmM2ViYzEiLCJlbWFpbCI6ImphY2thdXN0aW5jNjZAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImRhNjQ1YmViMjExZDI4MjE3OTQ3Iiwic2NvcGVkS2V5U2VjcmV0IjoiN2Y0YTVkNDBhYTQ0ODlhMmRkNjNhZTNlZjZkMjRiZDkwOGI2YjM0NWQyMDVmZjNkYzJjMGE0NWRmY2FlMTRiZCIsImlhdCI6MTcxNDc5NzE1N30.jeBDOfqWlP7A20nUmroz3OQ1VCm_9rE-g_Kdk86bryU";
+
+  const { writeContract } = useWriteContract();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -60,6 +120,17 @@ const FileUploader = () => {
           }
         });
         console.log(jsonRes.data);
+
+        writeContract({
+          address: '0xa1c7c4c0b36427ab791ebdd27cf004426e6c1520',
+          abi: abi,
+          functionName: 'createDAO',
+          args: [
+            "Bruh",
+            "Moment",
+            jsonRes.data.IpfsHash
+          ],
+        });
 
       } catch (error) {
         console.log(error);

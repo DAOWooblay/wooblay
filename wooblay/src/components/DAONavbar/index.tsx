@@ -21,7 +21,7 @@ export default function index({ nfts }: { nfts: any }) {
                                 <>
                                     {nfts.map((nft: any) => (
                                         <button className="w-16 h-16 rounded-full mb-2 bg-white">
-                                            <img src={nft.image.cachedUrl} alt="Button 1" className="w-full h-full" />
+                                            <img src="logo.png" alt="Button 1" className="w-full h-full" />
                                         </button>
                                     ))}
                                 </>
