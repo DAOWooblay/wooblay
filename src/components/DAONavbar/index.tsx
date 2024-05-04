@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -6,6 +6,10 @@ export default function index({ nfts }: { nfts: any }) {
 
     //Router
     const router = useRouter();
+
+    //Pop up on DAO create button
+    const [isHovered, setIsHovered] = useState(false);
+
 
     // This will be replaced with the actual NFTs
     // Use Wagmi to read the NFTs from the user's wallet
@@ -24,8 +28,18 @@ export default function index({ nfts }: { nfts: any }) {
                             </>
                         </> : "Sorry you have no NFTs"}
 
-                        <button className="w-14 h-14 rounded-full bg-white text-black text-lg">
-                            +
+
+                        <button
+                            className="w-14 h-14 rounded-full bg-white text-black text-lg relative"
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}
+                        >
+                            <a href='/daocreate'>+</a>
+                            {isHovered && (
+                                <div className="absolute top-0 left-0 mt-16 ml-4 p-2 bg-blue-500 text-white rounded shadow-lg">
+                                    Create a DAO
+                                </div>
+                            )}
                         </button>
                     </div>
                 </div>

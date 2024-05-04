@@ -9,7 +9,7 @@ const Explorer: NextPage = () => {
     // Setting the details of the belongings of users address
     const { address } = useAccount();
     console.log(address, 'address')
-    const DAO_CONTRACT_ADDRESS = '0xfA01709e3f69977D86B8e1474DC13B520D04E547'
+    const DAO_CONTRACT_ADDRESSES = ['0xfA01709e3f69977D86B8e1474DC13B520D04E547', '0x085ff4379CA079c7c7ba5EEd6a738FBaAfB2d0EC']
     const [nfts, setNfts] = useState<any[]>([]);
 
     // 1) Use Alchemy to get all NFTs for a particular user
@@ -22,9 +22,11 @@ const Explorer: NextPage = () => {
                 .then(response => response.json())
                 .then(response => {
                     console.log(response)
-                    const hasDAOContract = response.ownedNfts?.some((nft: any) => nft.contract.address === DAO_CONTRACT_ADDRESS);
+                    const hasDAOContract = response.ownedNfts?.some((nft: any) => DAO_CONTRACT_ADDRESSES.includes(nft.contract.address));
                     console.log(hasDAOContract)
-                    if (hasDAOContract) setNfts(response.ownedNfts.filter((nft: any) => nft.contract.address === DAO_CONTRACT_ADDRESS));
+                    if (hasDAOContract) {
+                        setNfts(response.ownedNfts.filter((nft: any) => DAO_CONTRACT_ADDRESSES.includes(nft.contract.address)));
+                    }
                     console.log(hasDAOContract ? 'DAO contract address found' : 'DAO contract address not found');
                 })
                 .catch(err => console.error(err));
