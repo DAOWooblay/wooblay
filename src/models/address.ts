@@ -1,12 +1,14 @@
 import mongoose , {Model } from 'mongoose';
 
-interface IAddress {
+export interface IAddress {
     _id: string;
     twitter: string
     telegram: string
     bio: string
     skills: string[]
-    nft_ids: number[]
+    nft_ids: string[]
+    //badges
+    //xp
     profile_pic : string
 }
 
