@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar';
 import DAONavbar from '../../components/DAONavbar';
 import { useAccount } from 'wagmi';
 import { useState } from 'react';
+
 const Explorer: NextPage = () => {
 
     // Setting the details of the belongings of users address
