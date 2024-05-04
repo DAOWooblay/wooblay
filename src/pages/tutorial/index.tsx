@@ -67,9 +67,8 @@ export default function Tutorial() {
 
 			<div className="relative z-10 bg-black bg-opacity-50 text-white text-center px-4 py-8 h-full">
 				<div className="flex flex-col items-center">
-					<h3 className="text-3xl mb-4">Get Involved</h3>
 					<button className="bg-blue-500 text-white w-[250px] h-[75px] rounded-xl drop-shadow-md cursor-pointer text-2xl hover:opacity-80 hover:shadow-md duration-150 ease-in-out">
-						Connect Wallet
+						<a href="/explorer">Get Started</a>
 					</button>
 					<span className="text-6xl animate-bounce mt-6">
 						<p className="rotate-180">ˬ</p>
