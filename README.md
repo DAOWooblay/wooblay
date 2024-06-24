@@ -44,13 +44,13 @@ Product, Project Management, Fullstack Development
 
 Web3 Frontend
 - [@ARamadxn54] (https://github.com/ARamadxn54)
+- [@shreeya16g] (https://github.com/shreeya16g)
 
 Smart Contract Development
 - [@eric-official] (https://github.com/eric-official)
 - [@0xefrain] (https://github.com/0xefrain)
 
-Tag-along
-- [@shreeya16g] (https://github.com/shreeya16g)
+
 ## Planning Process
 
 [Slides Presentation](https://linktodocumentation)
